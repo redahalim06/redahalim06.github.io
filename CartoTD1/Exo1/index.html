@@ -24,14 +24,23 @@
             "<br>-----------------------------<br>";
     }
 
-    navigator.geolocation.getCurrentPosition(function (position) {
-        document.getElementById("current").innerHTML = afficher(position);
-    });
+    function erreur(idDiv, err) {
+        document.getElementById(idDiv).innerHTML = "Erreur " + err.code + " : " + err.message;
+    }
 
+    const options = { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 };
 
-    navigator.geolocation.watchPosition(function (position) {
-        document.getElementById("watch").innerHTML = afficher(position);
-    });
+    navigator.geolocation.getCurrentPosition(
+        function (position) { document.getElementById("current").innerHTML = afficher(position); },
+        function (err) { erreur("current", err); },
+        options
+    );
+
+    navigator.geolocation.watchPosition(
+        function (position) { document.getElementById("watch").innerHTML = afficher(position); },
+        function (err) { erreur("watch", err); },
+        options
+    );
     </script>
 </body>
 </html>
