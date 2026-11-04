@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TD1 - Exo1</title>
+</head>
+<body>
+  <h1>Exo 1 : Géolocalisation</h1>
+  <div id="current">En attente...</div>
+  <div id="watch">En attente...</div>
+
+    <script>
+    function afficher(position) {
+        const c = position.coords;
+        const date = new Date(position.timestamp);
+
+        return "Lat : " + c.latitude + "<br>" +
+            "Lon : " + c.longitude + "<br>" +
+            "Altitude : " + (c.altitude !== null ? c.altitude + " m" : "non dispo") + "<br>" +
+            "Précision : " + c.accuracy + " m<br>" +
+            "Vitesse : " + (c.speed !== null ? c.speed + " m/s" : "non dispo") + "<br>" +
+            "Date : " + date.toLocaleString("fr-FR") +
+            "<br>-----------------------------<br>";
+    }
+
+    navigator.geolocation.getCurrentPosition(function (position) {
+        document.getElementById("current").innerHTML = afficher(position);
+    });
+
+
+    navigator.geolocation.watchPosition(function (position) {
+        document.getElementById("watch").innerHTML = afficher(position);
+    });
+    </script>
+</body>
+</html>
