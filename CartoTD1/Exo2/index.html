@@ -65,6 +65,12 @@
     L.marker(MARSEILLE).addTo(map).bindPopup("Marseille");
     L.polyline([MARSEILLE, NICE], { color: "blue" }).addTo(map);
 
+    const JONQUERA = [42.4196, 2.8746];
+    L.marker(JONQUERA).addTo(map).bindPopup("La Jonquera");
+
+    const BABINSKI = [lat, lon];
+    L.marker(BABINSKI).addTo(map).bindPopup("Babinski");
+
     function distanceKm(p1, p2) {
       const R = 6371;
       const rad = Math.PI / 180;
